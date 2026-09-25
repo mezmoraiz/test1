@@ -25,7 +25,7 @@ public class HomePageTest {
         WebElement alloLogo = driver.findElement(By.xpath("//a[@class='v-logo']"));
 
         Assert.assertTrue(alloLogo.isDisplayed());
-пш
+
         driver.quit();
     }
 }
