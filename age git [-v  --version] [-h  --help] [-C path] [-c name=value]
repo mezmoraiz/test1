@@ -1,0 +1,32 @@
+[1mdiff --git a/src/test/java/homePageTests/HomePageTest.java b/src/test/java/homePageTests/HomePageTest.java[m
+[1mindex c1e2a69..d7a17be 100644[m
+[1m--- a/src/test/java/homePageTests/HomePageTest.java[m
+[1m+++ b/src/test/java/homePageTests/HomePageTest.java[m
+[36m@@ -30,27 +30,6 @@[m [mpublic class HomePageTest {[m
+ [m
+         driver.quit();[m
+     }[m
+[31m-//    @Test[m
+[31m-//    public void clickAlloLogo() throws InterruptedException {[m
+[31m-//[m
+[31m-//        WebDriver driver = new ChromeDriver();[m
+[31m-//[m
+[31m-//        driver.manage().window().maximize();[m
+[31m-//[m
+[31m-//        driver.get("https://allo.ua/ru/");[m
+[31m-//[m
+[31m-//        WebElement AlloLogo = driver.findElement(By.xpath("//a[@class='v-logo']"));[m
+[31m-//[m
+[31m-//        sleep(5000);[m
+[31m-//[m
+[31m-//        AlloLogo.isDisplayed();[m
+[31m-//        AlloLogo.click();[m
+[31m-//[m
+[31m-//        sleep(2000);[m
+[31m-//[m
+[31m-//        driver.quit();[m
+[31m-//[m
+[31m-//    }[m
+ [m
+ [m
+ }[m
