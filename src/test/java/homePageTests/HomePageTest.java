@@ -30,27 +30,6 @@ public class HomePageTest {
 
         driver.quit();
     }
-//    @Test
-//    public void clickAlloLogo() throws InterruptedException {
-//
-//        WebDriver driver = new ChromeDriver();
-//
-//        driver.manage().window().maximize();
-//
-//        driver.get("https://allo.ua/ru/");
-//
-//        WebElement AlloLogo = driver.findElement(By.xpath("//a[@class='v-logo']"));
-//
-//        sleep(5000);
-//
-//        AlloLogo.isDisplayed();
-//        AlloLogo.click();
-//
-//        sleep(2000);
-//
-//        driver.quit();
-//
-//    }
 
 
 }
