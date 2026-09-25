@@ -22,14 +22,10 @@ public class HomePageTest {
 
         sleep(5000);
 
-        WebElement AlloLogo = driver.findElement(By.xpath("//a[@class='v-logo']"));
+        WebElement alloLogo = driver.findElement(By.xpath("//a[@class='v-logo']"));
 
-        AlloLogo.isDisplayed();
-
-        Assert.assertTrue(AlloLogo.isDisplayed());
+        Assert.assertTrue(alloLogo.isDisplayed());
 
         driver.quit();
     }
-
-
 }
