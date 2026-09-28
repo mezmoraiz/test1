@@ -42,24 +42,21 @@ public class HomePageTest {
 
         WebElement alloSearch = driver.findElement(By.id("search-form__input"));
 
-        Assert.assertTrue(
-                alloSearch.isDisplayed());
+        Assert.assertTrue(alloSearch.isDisplayed());
 
         alloSearch.sendKeys("Фен");
 
-        WebElement buttonSearch = driver.findElement(
-                By.xpath("//button[@class='search-form__submit-button']"));
+        WebElement buttonSearch = driver.findElement(By.xpath("//button[@class='search-form__submit-button']"));
 
         buttonSearch.click();
 
         sleep(5000);
 
-            WebElement firstFen = driver.findElement(
-                    By.xpath("(//a[contains(@class, 'product-card__title') and contains(., 'Фен')])[1]"));
+        WebElement firstFen = driver.findElement(By.xpath("(//a[contains(@class, 'product-card__title') and contains(., 'Фен')])[1]"));
 
-            Assert.assertTrue(firstFen.getText().contains("Фен"));
+        Assert.assertTrue(firstFen.getText().contains("Фен"));
 
-          driver.quit();
+        driver.quit();
     }
 }
 
