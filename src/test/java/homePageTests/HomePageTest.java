@@ -58,5 +58,46 @@ public class HomePageTest {
 
         driver.quit();
     }
+
+    @Test
+    public void checkAlloSearchAirpod3() throws InterruptedException {
+
+        WebDriver driver = new ChromeDriver();
+
+        driver.manage().window().maximize();
+
+        driver.get("https://allo.ua/ru/");
+
+        sleep(5000);
+
+        WebElement alloLogo = driver.findElement(By.xpath("//a[@class='v-logo']"));
+
+        Assert.assertTrue(alloLogo.isDisplayed());
+
+        WebElement alloSearch = driver.findElement(By.id("search-form__input"));
+
+        alloSearch.sendKeys("AirPods 3");
+
+        WebElement buttonSearch = driver.findElement(By.xpath("//button[@class='search-form__submit-button']"));
+
+        buttonSearch.click();
+
+        sleep(5000);
+
+        WebElement firstAirPods3 = driver.findElement(By.xpath("(//a[contains(@class, 'product-card__title') and contains(., 'AirPods 3')])[1]"));
+
+        Assert.assertTrue(firstAirPods3.getText().contains("AirPods 3"));
+
+        String productName = firstAirPods3.getText();
+
+        firstAirPods3.click();
+
+        sleep(5000);
+
+        WebElement productTitle = driver.findElement(By.xpath("//h1"));
+
+        Assert.assertEquals(productTitle.getText(), productName);
+
+    }
 }
 
