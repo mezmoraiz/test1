@@ -86,18 +86,19 @@ public class HomePageTest {
 
         WebElement firstAirPods3 = driver.findElement(By.xpath("(//a[contains(@class, 'product-card__title') and contains(., 'AirPods 3')])[1]"));
 
-        Assert.assertTrue(firstAirPods3.getText().contains("AirPods 3"));
-
         String productName = firstAirPods3.getText();
+
+        Assert.assertTrue(productName.contains("AirPods 3"));
 
         firstAirPods3.click();
 
         sleep(5000);
 
-        WebElement productTitle = driver.findElement(By.xpath("//h1"));
+        WebElement productTitle = driver.findElement(By.xpath("//h1[@class='p-view__header-title']"));
 
         Assert.assertEquals(productTitle.getText(), productName);
 
+        driver.quit();
     }
 }
 
