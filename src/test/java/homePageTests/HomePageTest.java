@@ -28,4 +28,79 @@ public class HomePageTest {
 
         driver.quit();
     }
+
+
+    @Test
+    public void checkAlloSearch() throws InterruptedException {
+
+        WebDriver driver = new ChromeDriver();
+
+        driver.manage().window().maximize();
+
+        driver.get("https://allo.ua/ru/");
+
+        sleep(5000);
+
+        WebElement alloSearch = driver.findElement(By.id("search-form__input"));
+
+        Assert.assertTrue(alloSearch.isDisplayed());
+
+        alloSearch.sendKeys("Фен");
+
+        WebElement buttonSearch = driver.findElement(By.xpath("//button[@class='search-form__submit-button']"));
+
+        buttonSearch.click();
+
+        sleep(5000);
+
+        WebElement firstFen = driver.findElement(By.xpath("(//a[contains(@class, 'product-card__title') and contains(., 'Фен')])[1]"));
+
+        Assert.assertTrue(firstFen.getText().contains("Фен"));
+
+        driver.quit();
+    }
+
+    @Test
+    public void checkAlloSearchAirpod3() throws InterruptedException {
+
+        WebDriver driver = new ChromeDriver();
+
+        driver.manage().window().maximize();
+
+        driver.get("https://allo.ua/ru/");
+
+        sleep(5000);
+
+        WebElement alloLogo = driver.findElement(By.xpath("//a[@class='v-logo']"));
+
+        Assert.assertTrue(alloLogo.isDisplayed());
+
+        WebElement alloSearch = driver.findElement(By.id("search-form__input"));
+
+        alloSearch.sendKeys("AirPods 3");
+
+        WebElement buttonSearch = driver.findElement(By.xpath("//button[@class='search-form__submit-button']"));
+
+        buttonSearch.click();
+
+        sleep(5000);
+
+        WebElement firstAirPods3 = driver.findElement(By.xpath("(//a[contains(@class, 'product-card__title') and contains(., 'AirPods 3')])[1]"));
+
+        String productName = firstAirPods3.getText();
+
+        Assert.assertTrue(productName.contains("AirPods 3"));
+
+        firstAirPods3.click();
+
+        sleep(5000);
+
+        WebElement productTitle = driver.findElement(By.xpath("//h1[@class='p-view__header-title']"));
+
+        Assert.assertEquals(productTitle.getText(), productName);
+
+        driver.quit();
+    }
 }
+
+
