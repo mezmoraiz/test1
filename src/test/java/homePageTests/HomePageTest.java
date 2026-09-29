@@ -29,6 +29,7 @@ public class HomePageTest {
         driver.quit();
     }
 
+
     @Test
     public void checkAlloSearch() throws InterruptedException {
 
@@ -101,4 +102,5 @@ public class HomePageTest {
         driver.quit();
     }
 }
+
 
