@@ -7,6 +7,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 import static java.lang.Thread.sleep;
 
 public class HomePageTest {
@@ -98,6 +100,50 @@ public class HomePageTest {
         WebElement productTitle = driver.findElement(By.xpath("//h1[@class='p-view__header-title']"));
 
         Assert.assertEquals(productTitle.getText(), productName);
+
+        driver.quit();
+    }
+    @Test
+    public void checkZamovlennia() throws InterruptedException {
+        WebDriver driver = new ChromeDriver();
+
+        driver.manage().window().maximize();
+
+        driver.get("https://allo.ua/ru/");
+
+        sleep(5000);
+
+        WebElement buyersButton = driver.findElement(By.xpath("//a[contains(@class, 'mh-button--open')]"));
+
+        Assert.assertTrue(buyersButton.isDisplayed());
+
+        buyersButton.click();
+
+        sleep(1000);
+
+        WebElement buyersDropDownMenu = driver.findElement(By.xpath("//div[@class='mh-button__dropdown']"));
+
+        Assert.assertTrue(buyersDropDownMenu.isDisplayed());
+
+        WebElement delyveryAndPayment = driver.findElement(By.xpath("//a[.//span[normalize-space()='Доставка и оплата']]"));
+
+        Assert.assertTrue(delyveryAndPayment.isDisplayed());
+
+        delyveryAndPayment.click();
+
+        sleep(3000);
+
+        WebElement titleShipmentAndDelyvery = driver.findElement(By.xpath("//h2[@class='sp-page-title sp-h2 page-header']"));
+
+        String titleShipmentAndDelyveryText = titleShipmentAndDelyvery.getText();
+
+        Assert.assertTrue(titleShipmentAndDelyveryText.contains("Доставка и оплата"));
+
+        WebElement proceedToCheckout = driver.findElement(By.xpath("//button[@id='defaultOpenDesc' and contains(@onclick, 'Buy')]"));
+
+        Assert.assertTrue(proceedToCheckout.isDisplayed());
+
+        Assert.assertEquals(proceedToCheckout.getText().trim(), "Как оформить заказ?");
 
         driver.quit();
     }
