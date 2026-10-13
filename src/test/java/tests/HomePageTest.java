@@ -21,8 +21,7 @@ public class HomePageTest extends Testinit {
 
         openUrl(alloUrl);
 
-        Assert.assertTrue(homePage.alooLogo().isDisplayed());
-
+        Assert.assertTrue(homePage.alooLogo().isDisplayed());git
     }
 
 
@@ -54,19 +53,15 @@ public class HomePageTest extends Testinit {
         homePage.searchField().sendKeys("AirPods 3");
         homePage.searchButton().click();
 
-
-        WebElement airPods = searchResultPage.airPods();
-        String productName = airPods.getText();
+        String productName = searchResultPage.airPods().getText();
 
         Assert.assertTrue(productName.contains("AirPods 3"));
-        airPods.click();
+        searchResultPage.airPods().click();
 
         Assert.assertEquals(searchResultPage.productTitle().getText(), productName);
-
     }
     @Test
     public void checkZamovlennia()  {
-
         HomePage homePage = new HomePage(driver);
         SearchResultPage searchResultPage = new SearchResultPage(driver);
 
@@ -79,17 +74,12 @@ public class HomePageTest extends Testinit {
         Assert.assertTrue(homePage.deliveryAndPayment().isDisplayed());
         homePage.deliveryAndPayment().click();
 
-
-        WebElement titleDeliveryAndPayment = searchResultPage.titleDeliveryAndPayment();
-        String Deliverytext = titleDeliveryAndPayment.getText();
+        String Deliverytext = searchResultPage.titleDeliveryAndPayment().getText();
         Assert.assertTrue(Deliverytext.contains("Доставка и оплата"));
-
-
 
         WebElement proceedToCheckout = searchResultPage.proceedToCheckout();
         Assert.assertTrue(proceedToCheckout.isDisplayed());
         Assert.assertEquals(proceedToCheckout.getText().trim(), "Как оформить заказ?");
-
     }
 }
 

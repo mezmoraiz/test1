@@ -17,6 +17,7 @@ public class SearchResultPage extends BasePage {
     public WebElement firstFen() {
         return visibilityOfElementByXpath(FIRST_FEN);
     }
+
     public WebElement airPods() {
         return visibilityOfElementByXpath(AIRPODS);
     }
@@ -24,9 +25,11 @@ public class SearchResultPage extends BasePage {
     public WebElement productTitle(){
         return visibilityOfElementByXpath(PRODUCT_TITLE);
     }
+
     public WebElement titleDeliveryAndPayment(){
         return visibilityOfElementByXpath(DELIVERY_AND_PAYMENT);
     }
+
     public WebElement proceedToCheckout() {
         return visibilityOfElementByXpath(PROCEED_TO_CHECKOUT);
     }
