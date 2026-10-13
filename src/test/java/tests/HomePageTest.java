@@ -1,12 +1,13 @@
 package tests;
 
 import bassesClass.Testinit;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.DeliveryAndPaymentPage;
+import pages.GoodsPage;
 import pages.HomePage;
-import pages.SearchResultPage;
+import pages.SearchResultsPage;
 
 import static java.lang.Thread.sleep;
 
@@ -16,80 +17,48 @@ public class HomePageTest extends Testinit {
 
     @Test
     public void checkAlloLogo() {
-
         HomePage homePage = new HomePage(driver);
-
-        openUrl(alloUrl);
-
-        Assert.assertTrue(homePage.alooLogo().isDisplayed());
-
+        homePage.alloLogoDisplayed();
     }
 
 
     @Test
     public void checkAlloSearch()  {
-
         HomePage homePage = new HomePage(driver);
-        SearchResultPage searchResultPage = new SearchResultPage(driver);
-
-        openUrl(alloUrl);
-
-        Assert.assertTrue(homePage.searchField().isDisplayed());
-
-        homePage.searchField().sendKeys("Фен");
-        homePage.searchButton().click();
-
-        Assert.assertTrue(searchResultPage.firstFen().getText().contains("Фен"));
-
+        String fen = "Фен";
+        SearchResultsPage searchResultsPage = new SearchResultsPage(driver);
+        homePage.searchFieldDisplayed();
+        homePage.enterValuesInSearchField(fen);
+        homePage.clickSearchButton();
+        Assert.assertTrue(searchResultsPage.getNameFen().contains("Фен"));
     }
 
     @Test
     public void checkAlloSearchAirpod3()  {
         HomePage homePage = new HomePage(driver);
-        SearchResultPage searchResultPage = new SearchResultPage(driver);
-
-        openUrl(alloUrl);
-        Assert.assertTrue(homePage.alooLogo().isDisplayed());
-
-        homePage.searchField().sendKeys("AirPods 3");
-        homePage.searchButton().click();
-
-
-        WebElement airPods = searchResultPage.airPods();
-        String productName = airPods.getText();
-
+        SearchResultsPage searchResultsPage = new SearchResultsPage(driver);
+        GoodsPage goodsPage = new GoodsPage(driver);
+        homePage.alloLogoDisplayed();
+        homePage.enterValuesInSearchField("AirPods 3");
+        homePage.clickSearchButton();
+        String productName = searchResultsPage.getNameAirPods();
         Assert.assertTrue(productName.contains("AirPods 3"));
-        airPods.click();
-
-        Assert.assertEquals(searchResultPage.productTitle().getText(), productName);
-
+        searchResultsPage.clickAirpods();
+        Assert.assertEquals(goodsPage.getNameproductTitle(), productName);
     }
     @Test
     public void checkZamovlennia()  {
-
         HomePage homePage = new HomePage(driver);
-        SearchResultPage searchResultPage = new SearchResultPage(driver);
-
-        openUrl(alloUrl);
-
-        Assert.assertTrue(homePage.buyersButton().isDisplayed());
-        homePage.buyersButton().click();
-
-        Assert.assertTrue(homePage.dropDownMenu().isDisplayed());
-        Assert.assertTrue(homePage.deliveryAndPayment().isDisplayed());
-        homePage.deliveryAndPayment().click();
-
-
-        WebElement titleDeliveryAndPayment = searchResultPage.titleDeliveryAndPayment();
-        String Deliverytext = titleDeliveryAndPayment.getText();
-        Assert.assertTrue(Deliverytext.contains("Доставка и оплата"));
-
-
-
-        WebElement proceedToCheckout = searchResultPage.proceedToCheckout();
-        Assert.assertTrue(proceedToCheckout.isDisplayed());
-        Assert.assertEquals(proceedToCheckout.getText().trim(), "Как оформить заказ?");
-
+        SearchResultsPage searchResultsPage = new SearchResultsPage(driver);
+        DeliveryAndPaymentPage deliveryAndPaymentPage = new DeliveryAndPaymentPage(driver);
+        homePage.buyersButtonDisplayed();
+        homePage.clickBuyersButton();
+        homePage.dropDownMenuDisplayed();
+        homePage.deliveryAndPaymentDisplayed();
+        homePage.clickDeliveryAndPayment();
+        Assert.assertTrue(searchResultsPage.getTitleDeliveryAndPayment().contains("Доставка и оплата"));
+        deliveryAndPaymentPage.proceedToCheckoutDisplayed();
+        Assert.assertEquals(deliveryAndPaymentPage.getProceedToCheckout(), "Как оформить заказ?");
     }
 }
 
