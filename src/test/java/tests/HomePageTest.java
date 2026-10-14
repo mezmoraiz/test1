@@ -21,7 +21,7 @@ public class HomePageTest extends Testinit {
 
         openUrl(alloUrl);
 
-        Assert.assertTrue(homePage.alooLogo().isDisplayed());git
+        Assert.assertTrue(homePage.alooLogo().isDisplayed());
     }
 
 
@@ -39,7 +39,6 @@ public class HomePageTest extends Testinit {
         homePage.searchButton().click();
 
         Assert.assertTrue(searchResultPage.firstFen().getText().contains("Фен"));
-
     }
 
     @Test
@@ -77,9 +76,8 @@ public class HomePageTest extends Testinit {
         String Deliverytext = searchResultPage.titleDeliveryAndPayment().getText();
         Assert.assertTrue(Deliverytext.contains("Доставка и оплата"));
 
-        WebElement proceedToCheckout = searchResultPage.proceedToCheckout();
-        Assert.assertTrue(proceedToCheckout.isDisplayed());
-        Assert.assertEquals(proceedToCheckout.getText().trim(), "Как оформить заказ?");
+        Assert.assertTrue(searchResultPage.proceedToCheckout().isDisplayed());
+        Assert.assertEquals(searchResultPage.proceedToCheckout().getText().trim(), "Как оформить заказ?");
     }
 }
 

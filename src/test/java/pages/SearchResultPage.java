@@ -26,11 +26,7 @@ public class SearchResultPage extends BasePage {
         return visibilityOfElementByXpath(PRODUCT_TITLE);
     }
 
-    public WebElement titleDeliveryAndPayment(){
-        return visibilityOfElementByXpath(DELIVERY_AND_PAYMENT);
-    }
+    public WebElement titleDeliveryAndPayment(){return visibilityOfElementByXpath(DELIVERY_AND_PAYMENT); }
 
-    public WebElement proceedToCheckout() {
-        return visibilityOfElementByXpath(PROCEED_TO_CHECKOUT);
-    }
+    public WebElement proceedToCheckout() {return visibilityOfElementByXpath(PROCEED_TO_CHECKOUT);}
 }
