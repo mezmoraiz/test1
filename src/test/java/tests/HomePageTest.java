@@ -26,7 +26,7 @@ public class HomePageTest extends Testinit {
 
 
     @Test
-    public void checkAlloSearch()  {
+    public void checkAlloSearch() {
 
         HomePage homePage = new HomePage(driver);
         SearchResultPage searchResultPage = new SearchResultPage(driver);
@@ -42,7 +42,7 @@ public class HomePageTest extends Testinit {
     }
 
     @Test
-    public void checkAlloSearchAirpod3()  {
+    public void checkAlloSearchAirpod3() {
         HomePage homePage = new HomePage(driver);
         SearchResultPage searchResultPage = new SearchResultPage(driver);
 
@@ -59,8 +59,9 @@ public class HomePageTest extends Testinit {
 
         Assert.assertEquals(searchResultPage.productTitle().getText(), productName);
     }
+
     @Test
-    public void checkZamovlennia()  {
+    public void checkZamovlennia() {
         HomePage homePage = new HomePage(driver);
         SearchResultPage searchResultPage = new SearchResultPage(driver);
 
@@ -79,6 +80,59 @@ public class HomePageTest extends Testinit {
         Assert.assertTrue(searchResultPage.proceedToCheckout().isDisplayed());
         Assert.assertEquals(searchResultPage.proceedToCheckout().getText().trim(), "Как оформить заказ?");
     }
+
+    @Test
+    public void resultSearchField() {
+        HomePage homePage = new HomePage(driver);
+        SearchResultPage searchResultPage = new SearchResultPage(driver);
+        int expectedSizeProducts = 45;
+        String expectedNameTV = "Телевизор Samsung";
+
+        openUrl(alloUrl);
+        homePage.searchField().sendKeys("Телевізор Samsung");
+        homePage.searchButton().click();
+        Assert.assertTrue(searchResultPage.viewModelButton().isDisplayed());
+        int size_Products = searchResultPage.names_searchedProduct().size();
+
+        Assert.assertEquals(size_Products, expectedSizeProducts);
+
+        for (WebElement element : searchResultPage.names_searchedProduct()) {
+            Assert.assertTrue(element.getText().contains(expectedNameTV));
+        }
+
+    }
+
+    @Test
+    public void resultSearchField1() {
+        HomePage homePage = new HomePage(driver);
+        SearchResultPage searchResultPage = new SearchResultPage(driver);
+        int expectedScoreComments = 60;
+
+        openUrl(alloUrl);
+        homePage.searchField().sendKeys("Телевізор Samsung");
+        homePage.searchButton().click();
+        Assert.assertTrue(searchResultPage.viewModelButton().isDisplayed());
+
+        int size_Comments = searchResultPage.score_Comments_Product().size();
+        Assert.assertEquals(size_Comments, expectedScoreComments);
+
+        for (WebElement element : searchResultPage.score_Comments_Product()) {
+            String numbersComments = element.getText();
+
+            String onlyDigits = numbersComments.replaceAll("[^0-9]", "");
+
+            if (!onlyDigits.isEmpty()) {
+                int number = Integer.parseInt(onlyDigits);
+                if (number > 27) {
+                    System.out.println("Товар має коментарів: " + number);
+                }
+            }
+        }
+    }
 }
+
+
+
+
 
 
